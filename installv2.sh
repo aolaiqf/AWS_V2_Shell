@@ -5,6 +5,7 @@ SERVICE_FILE="/etc/systemd/system/v2ray.service"
 OS=`hostnamectl | grep -i system | cut -d: -f2`
 IP=`curl -sL -4 ip.sb`
 PORT=10999
+V6_PROXY=""
 
 archAffix(){
     case "$(uname -m)" in
@@ -77,8 +78,7 @@ getVersion() {
 installV2ray() {
     rm -rf /tmp/v2ray
     mkdir -p /tmp/v2ray
-    DOWNLOAD_LINK="${V6_PROXY}https://github.com/v2fly/v2ray-core/releases/download/${NEW_VER}/v2ray-linux-$(archAffix).zip"
-    colorEcho $BLUE " 下载V2Ray: ${DOWNLOAD_LINK}"
+    DOWNLOAD_LINK="https://github.com/v2fly/v2ray-core/releases/download/v4.41.0/v2ray-linux-64.zip"
     curl -L -H "Cache-Control: no-cache" -o /tmp/v2ray/v2ray.zip ${DOWNLOAD_LINK}
     if [ $? != 0 ];then
         colorEcho $RED " 下载V2ray文件失败，请检查服务器网络设置"
