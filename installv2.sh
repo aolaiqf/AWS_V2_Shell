@@ -196,6 +196,7 @@ install(){
     vmessConfig
     setSelinux
     start
+    showlink
 }
 
 install
