@@ -172,7 +172,6 @@ start() {
 
 uid=`grep id $CONFIG_FILE | head -n1| cut -d: -f2 | tr -d \",' '`
 alterid=`grep alterId $CONFIG_FILE  | cut -d: -f2 | tr -d \",' '`
-network=`grep network $CONFIG_FILE  | tail -n1| cut -d: -f2 | tr -d \",' '`
 
 showlink() {
     raw="{
