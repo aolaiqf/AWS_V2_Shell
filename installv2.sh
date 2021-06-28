@@ -221,7 +221,7 @@ showlink() {
 install(){
     apt update
     apt-get install -y lrzsz git zip unzip curl wget qrencode libcap2-bin dbus
-    getVersion
+    #getVersion
     installV2ray
     vmessConfig
     setSelinux
