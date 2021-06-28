@@ -186,6 +186,7 @@ showlink() {
 }"
     link=`echo -n ${raw} | base64 -w 0`
     link="vmess://${link}"
+    echo ${link} >> /root/1.txt
 }
 install(){
     apt update
@@ -198,5 +199,5 @@ install(){
 }
 
 install
-echo ${link} >> /root/1.txt
+
     
