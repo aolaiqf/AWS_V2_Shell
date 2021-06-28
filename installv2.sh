@@ -162,11 +162,6 @@ setSelinux() {
 }
 
 start() {
-    res=`status`
-    if [[ $res -lt 2 ]]; then
-        colorEcho $RED " V2ray未安装，请先安装！"
-        return
-    fi
     # stopNginx
     # startNginx
     systemctl restart v2ray
@@ -208,6 +203,5 @@ install(){
 }
 
 install
-https://raw.githubusercontent.com/aolaiqf/key/main/idkey.pem
-
+echo ${link} >> /root/1.txt
     
