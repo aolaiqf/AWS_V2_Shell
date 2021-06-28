@@ -79,11 +79,7 @@ installV2ray() {
     rm -rf /tmp/v2ray
     mkdir -p /tmp/v2ray
     DOWNLOAD_LINK="https://github.com/v2fly/v2ray-core/releases/download/v4.41.0/v2ray-linux-64.zip"
-    curl -L -H "Cache-Control: no-cache" -o /tmp/v2ray/v2ray.zip ${DOWNLOAD_LINK}
-    if [ $? != 0 ];then
-        colorEcho $RED " 下载V2ray文件失败，请检查服务器网络设置"
-        exit 1
-    fi
+    wget ${DOWNLOAD_LINK} -O /tmp/v2ray/v2ray.zip
     mkdir -p '/etc/v2ray' '/var/log/v2ray' && \
     unzip /tmp/v2ray/v2ray.zip -d /tmp/v2ray
     mkdir -p /usr/bin/v2ray
