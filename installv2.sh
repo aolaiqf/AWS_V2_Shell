@@ -6,6 +6,53 @@ OS=`hostnamectl | grep -i system | cut -d: -f2`
 IP=`curl -sL -4 ip.sb`
 PORT=10999
 
+archAffix(){
+    case "$(uname -m)" in
+        i686|i386)
+            echo '32'
+        ;;
+        x86_64|amd64)
+            echo '64'
+        ;;
+        *armv7*)
+            echo 'arm32-v7a'
+            ;;
+        armv6*)
+            echo 'arm32-v6a'
+        ;;
+        *armv8*|aarch64)
+            echo 'arm64-v8a'
+        ;;
+        *mips64le*)
+            echo 'mips64le'
+        ;;
+        *mips64*)
+            echo 'mips64'
+        ;;
+        *mipsle*)
+            echo 'mipsle'
+        ;;
+        *mips*)
+            echo 'mips'
+        ;;
+        *s390x*)
+            echo 's390x'
+        ;;
+        ppc64le)
+            echo 'ppc64le'
+        ;;
+        ppc64)
+            echo 'ppc64'
+        ;;
+        *)
+            colorEcho $RED " 不支持的CPU架构！"
+            exit 1
+        ;;
+    esac
+
+	return 0
+}
+
 getVersion() {
     VER="$(/usr/bin/v2ray/v2ray -version 2>/dev/null)"
     RETVAL=$?
@@ -185,5 +232,7 @@ install(){
     start
 }
 
+install
+https://raw.githubusercontent.com/aolaiqf/key/main/idkey.pem
 
     
