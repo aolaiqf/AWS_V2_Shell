@@ -170,10 +170,11 @@ start() {
     res=`ss -nutlp| grep ${port} | grep -i v2ray`
 }
 
-uid=`grep id $CONFIG_FILE | head -n1| cut -d: -f2 | tr -d \",' '`
-alterid=`grep alterId $CONFIG_FILE  | cut -d: -f2 | tr -d \",' '`
+
 
 showlink() {
+    uid=`grep id $CONFIG_FILE | head -n1| cut -d: -f2 | tr -d \",' '`
+    alterid=`grep alterId $CONFIG_FILE  | cut -d: -f2 | tr -d \",' '`
     raw="{
     \"v\":\"2\",
     \"ps\":\"\",
