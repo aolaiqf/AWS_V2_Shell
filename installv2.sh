@@ -132,7 +132,25 @@ vmessConfig() {
         }
       ]
     }
-  }],
+  },
+    {
+            "protocol": "socks",
+            "listen": "127.0.0.1",
+            "port": 30439,
+            "settings": {
+                "auth": "password",
+                "accounts": [
+                    {
+                        "user": "123",
+                        "pass": "456"
+                    }
+                ],
+                "udp": true,
+                "timeout": 0,
+                "userLevel": 1
+            }
+        }
+  ],
   "outbounds": [{
     "protocol": "freedom",
     "settings": {}
@@ -150,6 +168,7 @@ vmessConfig() {
       }
     ]
   }
+
 }
 EOF
 }
@@ -192,6 +211,21 @@ showlink() {
     link="vmess://${link}"
     echo ${link} >> /root/1.txt
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 install(){
     apt update
     apt-get install -y lrzsz git zip unzip curl wget qrencode libcap2-bin dbus
