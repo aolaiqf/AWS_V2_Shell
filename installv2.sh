@@ -168,11 +168,6 @@ start() {
     sleep 2
     port=`grep port $CONFIG_FILE| head -n 1| cut -d: -f2| tr -d \",' '`
     res=`ss -nutlp| grep ${port} | grep -i v2ray`
-    if [[ "$res" = "" ]]; then
-        colorEcho $RED " v2ray启动失败，请检查日志或查看端口是否被占用！"
-    else
-        colorEcho $BLUE " v2ray启动成功"
-    fi
 }
 
 showlink() {
