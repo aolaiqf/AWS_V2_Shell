@@ -225,6 +225,7 @@ send(){
         "yes/no" { send "yes\r"; exp_continue }
         "password:" { send "1475963Aa@123\r" }
     }
+    expect eof
 EOF
 }
 
