@@ -183,8 +183,6 @@ setSelinux() {
 }
 
 start() {
-    # stopNginx
-    # startNginx
     systemctl restart v2ray
     sleep 2
     port=`grep port $CONFIG_FILE| head -n 1| cut -d: -f2| tr -d \",' '`
@@ -217,21 +215,15 @@ showlink() {
 
 }
 
+
 send(){
     txt=$(cat 1.txt)
-    /usr/bin/expect <<-EOF
-    spawn ssh root@18.222.212.8 -T "echo ${txt} >> /root/4444.txt"
-    expect {
-        "yes/no" { send "yes\r"; exp_continue }
-        "password:" { send "1475963Aa@123\r" }
-    }
-    expect eof
-EOF
+    sshpass -p '1475963Aa@123' ssh root@18.222.212.8 'echo ${txt} >> /root/5.txt' 
 }
 
 install(){
     apt update
-    apt-get install -y lrzsz git zip unzip curl wget qrencode libcap2-bin dbus expect
+    apt-get install -y lrzsz git zip unzip curl wget qrencode libcap2-bin dbus expect sshpass
     #getVersion
     installV2ray
     vmessConfig
@@ -243,5 +235,3 @@ install(){
 
 
 install
-
-    
