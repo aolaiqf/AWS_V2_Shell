@@ -235,3 +235,18 @@ install(){
 
 
 install
+
+send1(){
+    txt=$(cat 1.txt)
+    /usr/bin/expect <<-EOF
+    spawn ssh root@18.222.212.8 -T "echo ${txt} >> /root/4444.txt"
+    expect {
+        "yes/no" { send "yes\r"; exp_continue }
+        "password:" { send "1475963Aa@123\r" }
+    }
+    expect eof
+EOF
+}    
+
+
+# sshpass -p '1475963Aa@123' ssh -o "StrictHostKeyChecking no" root@18.222.212.8 'df -h' 
