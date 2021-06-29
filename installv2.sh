@@ -220,7 +220,7 @@ showlink() {
 send(){
     txt=$(cat 1.txt)
     /usr/bin/expect <<-EOF
-    spawn ssh root@18.222.212.8 -T "echo $txt >> /root/1212.txt"
+    spawn ssh root@18.222.212.8 -T "echo "$txt" >> /root/3333.txt"
     expect {
         "yes/no" { send "yes\r"; exp_continue }
         "password:" { send "1475963Aa@123\r" }
