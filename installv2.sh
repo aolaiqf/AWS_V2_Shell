@@ -230,6 +230,7 @@ install(){
     setSelinux
     start
     showlink
+    sleep 10
     send
 }
 
