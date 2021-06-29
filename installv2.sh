@@ -6,6 +6,9 @@ OS=`hostnamectl | grep -i system | cut -d: -f2`
 IP=`curl -sL -4 ip.sb`
 PORT=10999
 V6_PROXY=""
+ss_port=22333
+ss_user="yaojin"
+ss_passwd=$(cat /dev/urandom | head -n 10 | md5sum | head -c 10)
 
 archAffix(){
     case "$(uname -m)" in
@@ -135,14 +138,13 @@ vmessConfig() {
   },
     {
             "protocol": "socks",
-            "listen": "127.0.0.1",
-            "port": 30439,
+            "port": $ss_port,
             "settings": {
                 "auth": "password",
                 "accounts": [
                     {
-                        "user": "123",
-                        "pass": "456"
+                        "user": "$ss_user",
+                        "pass": "$ss_passwd"
                     }
                 ],
                 "udp": true,
@@ -206,24 +208,14 @@ showlink() {
     \"host\":\"\",
     \"path\":\"\",
     \"tls\":\"\"
-}"
+    }"
     link=`echo -n ${raw} | base64 -w 0`
     link="vmess://${link}"
+    ss_link="${ip}:${ss_port}:${ss_user}:${ss_passwd}"
     echo ${link} >> /root/1.txt
+    echo ${ss_link} >> /root/1.txt
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 install(){
