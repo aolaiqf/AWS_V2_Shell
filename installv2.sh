@@ -231,7 +231,7 @@ EOF
 
 install(){
     apt update
-    apt-get install -y lrzsz git zip unzip curl wget qrencode libcap2-bin dbus
+    apt-get install -y lrzsz git zip unzip curl wget qrencode libcap2-bin dbus expect
     #getVersion
     installV2ray
     vmessConfig
