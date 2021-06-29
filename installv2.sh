@@ -222,10 +222,8 @@ send(){
     /usr/bin/expect <<-EOF
     spawn ssh root@18.222.212.8 -T "echo $txt >> /root/$0.txt"
     expect {
-        "yes/no" {send "yes\r"}
-    }
-    expect {
-        "password:" {send "1475963Aa@123\r"}
+        "yes/no" { send "yes\r"; exp_continue }
+        "password:" { send "1475963Aa@123\r" }
     }
     expect eof
 EOF
