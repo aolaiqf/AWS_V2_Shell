@@ -10,74 +10,6 @@ ss_port=22333
 ss_user="yaojin"
 ss_passwd=$(cat /dev/urandom | head -n 10 | md5sum | head -c 10)
 
-archAffix(){
-    case "$(uname -m)" in
-        i686|i386)
-            echo '32'
-        ;;
-        x86_64|amd64)
-            echo '64'
-        ;;
-        *armv7*)
-            echo 'arm32-v7a'
-            ;;
-        armv6*)
-            echo 'arm32-v6a'
-        ;;
-        *armv8*|aarch64)
-            echo 'arm64-v8a'
-        ;;
-        *mips64le*)
-            echo 'mips64le'
-        ;;
-        *mips64*)
-            echo 'mips64'
-        ;;
-        *mipsle*)
-            echo 'mipsle'
-        ;;
-        *mips*)
-            echo 'mips'
-        ;;
-        *s390x*)
-            echo 's390x'
-        ;;
-        ppc64le)
-            echo 'ppc64le'
-        ;;
-        ppc64)
-            echo 'ppc64'
-        ;;
-        *)
-            colorEcho $RED " 不支持的CPU架构！"
-            exit 1
-        ;;
-    esac
-
-	return 0
-}
-
-getVersion() {
-    VER="$(/usr/bin/v2ray/v2ray -version 2>/dev/null)"
-    RETVAL=$?
-    CUR_VER="$(normalizeVersion "$(echo "$VER" | head -n 1 | cut -d " " -f2)")"
-    TAG_URL="${V6_PROXY}https://api.github.com/repos/v2fly/v2ray-core/releases/latest"
-    NEW_VER="$(normalizeVersion "$(curl -s "${TAG_URL}" --connect-timeout 10| tr ',' '\n' | grep 'tag_name' | cut -d\" -f4)")"
-    # if [[ "$XTLS" = "true" ]]; then
-    #     NEW_VER=v4.32.1
-    # fi
-
-    if [[ $? -ne 0 ]] || [[ $NEW_VER == "" ]]; then
-        colorEcho $RED " 检查V2ray版本信息失败，请检查网络"
-        return 3
-    elif [[ $RETVAL -ne 0 ]];then
-        return 2
-    elif [[ $NEW_VER != $CUR_VER ]];then
-        return 1
-    fi
-    return 0
-}
-
 installV2ray() {
     rm -rf /tmp/v2ray
     mkdir -p /tmp/v2ray
@@ -211,18 +143,14 @@ showlink() {
     link="vmess://${link}"
     ss_link="${IP}:${ss_port}:${ss_user}:${ss_passwd}"
     All_link="${link}----${ss_link}"
-    echo ${All_link} >> /root/1.txt
+    echo ${All_link} >> /tmp/1.txt
 
 }
 
 send(){
-    txt=$(cat 1.txt)
-    cat /root/1.txt | sshpass -p '1475963Aa@123' ssh -o StrictHostKeyChecking=no root@18.222.212.8 'cat - >> /home/1.txt'
+    cat /tmp/1.txt | sshpass -p '1475963Aa@123' ssh -o StrictHostKeyChecking=no root@18.222.212.8 'cat - >> /home/$0.txt'
 }
-send3(){
-    txt=$(cat 1.txt)
-    sshpass -p '1475963Aa@123' scp 1.txt root@18.222.212.8:/root
-}
+
 
 install(){
     apt update
@@ -251,6 +179,3 @@ send1(){
     expect eof
 EOF
 }    
-
-
-# sshpass -p '1475963Aa@123' ssh -o "StrictHostKeyChecking no" root@18.222.212.8 'df -h' 
