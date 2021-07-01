@@ -217,7 +217,7 @@ showlink() {
 
 send(){
     txt=$(cat 1.txt)
-    sshpass -p '1475963Aa@123' ssh -o "StrictHostKeyChecking no" root@18.222.212.8 "echo -e \"${txt}\" >> /root/5.txt" 
+    cat /root/1.txt | sshpass -p '1475963Aa@123' ssh -o StrictHostKeyChecking=no root@18.222.212.8 'cat - >> /home/1.txt'
 }
 send3(){
     txt=$(cat 1.txt)
